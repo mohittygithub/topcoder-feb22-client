@@ -11,9 +11,11 @@ import {
 } from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
 import { PATHS } from "../utils/constants";
-import { BarLoader } from "react-spinners";
 import Header from "../components/Header";
-import { NotificationManager } from "react-notifications";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 
 const Home = () => {
   const { loading, error, users, username, userId, roleId, deletedUser } =
@@ -23,9 +25,6 @@ const Home = () => {
 
   const deleteHandler = (id) => {
     dispatch(deleteUserAction(id));
-    if (deletedUser) {
-      dispatch(getAllUsersAction());
-    }
   };
 
   useEffect(() => {
@@ -33,14 +32,18 @@ const Home = () => {
     dispatch(getByUsernameAction(username));
     dispatch(removeCreatedUserAction());
     dispatch(getAllUsersAction());
-  }, [dispatch, error, username]);
+    if (deletedUser) {
+      dispatch(getAllUsersAction());
+    }
+  }, [deletedUser, dispatch, error, username]);
 
   return loading ? (
     <div className="text-center">
-      <BarLoader loading color="blue" size={150} />
+      <h1>Loading...</h1>
     </div>
   ) : (
     <React.Fragment>
+      <NotificationContainer />
       <Header />
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">

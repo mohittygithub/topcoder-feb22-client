@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { resetPasswordAction } from "../redux/actions/userActions";
@@ -9,6 +14,7 @@ const ResetPassword = () => {
   const [code, setCode] = useState();
   const dispatch = useDispatch();
   const params = useParams();
+  const [loading, error] = useSelector((state) => state.collections);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,13 +25,19 @@ const ResetPassword = () => {
   };
 
   useEffect(() => {
+    error && NotificationManager.error(error);
     // console.log("params=>", params);
     params && setCode(params.code);
     // console.log(code);
-  }, [code, params]);
+  }, [code, error, params]);
 
-  return (
+  return loading ? (
+    <div className="text-center">
+      <h1>Loading...</h1>
+    </div>
+  ) : (
     <React.Fragment>
+      <NotificationContainer />
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
           <h3 className="p-3 text-center">Topcoder - Create Password</h3>

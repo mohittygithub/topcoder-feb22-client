@@ -7,7 +7,6 @@ import "react-notifications/lib/notifications.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { BarLoader } from "react-spinners";
 import Header from "../components/Header";
 import { createUserAction, getRolesAction } from "../redux/actions/userActions";
 import { PATHS } from "../utils/constants";
@@ -34,7 +33,7 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    error && NotificationManager.error(error);
+    // error && NotificationManager.error(error);
     createdUser && history.push(PATHS.HOME);
     dispatch(getRolesAction());
     // error && NotificationManager.error(error);
@@ -42,7 +41,7 @@ const Signup = () => {
 
   return loading ? (
     <div className="text-center">
-      <BarLoader loading color="blue" size={150} />
+      <h1>Loading...</h1>
     </div>
   ) : (
     <React.Fragment>

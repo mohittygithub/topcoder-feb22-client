@@ -7,7 +7,6 @@ import {
 import "react-notifications/lib/notifications.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { BarLoader } from "react-spinners";
 import { loginAction } from "../redux/actions/userActions";
 
 const Login = () => {
@@ -30,7 +29,7 @@ const Login = () => {
   }, [error]);
   return loading ? (
     <div className="text-center">
-      <BarLoader loading color="blue" size={150} />
+      <h1>Loading...</h1>
     </div>
   ) : (
     <React.Fragment>

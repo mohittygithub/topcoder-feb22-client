@@ -29,8 +29,8 @@ const Signup = () => {
     // console.log("role=>", email, fullName, roleId);
     if (email && fullName && roleId) {
       dispatch(createUserAction(email, fullName, roleId));
-      error && NotificationManager.error(error);
     }
+    error && NotificationManager.error(error);
   };
 
   useEffect(() => {
@@ -60,6 +60,7 @@ const Signup = () => {
             placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -74,6 +75,7 @@ const Signup = () => {
             placeholder="Full Name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">

@@ -4,6 +4,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const ResetPassword = () => {
@@ -105,6 +106,9 @@ const ResetPassword = () => {
           <button type="submit" class="btn btn-primary">
             Create
           </button>
+          <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
+            Click here to go to the login page.
+          </Link>
         </form>
       </div>
     </React.Fragment>

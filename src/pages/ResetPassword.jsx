@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   NotificationContainer,
@@ -16,27 +16,43 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (password === retypePassword) {
-      // dispatch(resetPasswordAction(password, code));
-      try {
-        const response = await axios.put(
-          `http://ec2-3-92-174-48.compute-1.amazonaws.com:8080/api/v1/users/activate/${code}`,
-          {
-            password: password,
-          }
-        );
-        console.log(response);
-        if (response.data) {
+      const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      };
+      fetch(
+        `http://44.202.120.131:8080/api/v1/users/activate/${code}`,
+        requestOptions
+      ).then(
+        (response) =>
+          response.data &&
           NotificationManager.success(
             "You are active now. Please login with your username/email and password "
-          );
-          setPassword("");
-          setRetypePassword("");
-        }
-      } catch (error) {
-        if (error) {
-          NotificationManager.error(error.message);
-        }
-      }
+          )
+      );
+
+      // dispatch(resetPasswordAction(password, code));
+      // try {
+      //   const response = await axios.put(
+      //     `http://44.202.120.131:8080/api/v1/users/activate/${code}`,
+      //     {
+      //       password: password,
+      //     }
+      //   );
+      //   console.log(response);
+      //   if (response.data) {
+      //     NotificationManager.success(
+      //       "You are active now. Please login with your username/email and password "
+      //     );
+      //     setPassword("");
+      //     setRetypePassword("");
+      //   }
+      // } catch (error) {
+      //   if (error) {
+      //     NotificationManager.error(error.message);
+      //   }
+      // }
     }
   };
 

@@ -24,12 +24,10 @@ const ResetPassword = () => {
       fetch(
         `http://44.202.120.131:8080/api/v1/users/activate/${code}`,
         requestOptions
-      ).then(
-        (response) =>
-          response.data &&
-          NotificationManager.success(
-            "You are active now. Please login with your username/email and password "
-          )
+      ).then((response) =>
+        NotificationManager.success(
+          "You are active now. Please login with your username/email and password "
+        )
       );
 
       // dispatch(resetPasswordAction(password, code));

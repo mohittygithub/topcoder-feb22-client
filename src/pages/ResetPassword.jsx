@@ -103,12 +103,14 @@ const ResetPassword = () => {
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary">
-            Create
-          </button>
-          <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
-            Click here to go to the login page.
-          </Link>
+          <div className="d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary">
+              Create
+            </button>
+            <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
+              Click here to go to the login page.
+            </Link>
+          </div>
         </form>
       </div>
     </React.Fragment>

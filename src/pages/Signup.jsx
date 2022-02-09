@@ -97,9 +97,6 @@ const Signup = () => {
         <button type="submit" className="btn btn-primary">
           Create
         </button>
-        <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
-          Click here to go to the login page.
-        </Link>
       </form>
     </React.Fragment>
   );

@@ -6,6 +6,7 @@ import {
 import "react-notifications/lib/notifications.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "../components/Header";
 import { createUserAction, getRolesAction } from "../redux/actions/userActions";
@@ -96,10 +97,9 @@ const Signup = () => {
         <button type="submit" className="btn btn-primary">
           Create
         </button>
-        <p>
-          Click this link to got to login screen :
-          http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/
-        </p>
+        <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
+          Click here to go to the login page.
+        </Link>
       </form>
     </React.Fragment>
   );

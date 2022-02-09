@@ -19,7 +19,7 @@ const ResetPassword = () => {
       // dispatch(resetPasswordAction(password, code));
       try {
         const response = await axios.put(
-          `http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/api/v1/activate/${code}`,
+          `http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/api/v1/users/activate/${code}`,
           {
             password: password,
           }

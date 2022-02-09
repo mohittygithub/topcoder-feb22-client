@@ -31,11 +31,7 @@ const ResetPassword = () => {
             "You are active now. Please login with your username/email and password "
           )
         )
-        .then(
-          setTimeout(() => {
-            window.close();
-          }, 2000)
-        );
+        .then(window.close());
 
       // dispatch(resetPasswordAction(password, code));
       // try {

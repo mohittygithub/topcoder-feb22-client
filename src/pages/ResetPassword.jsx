@@ -29,6 +29,8 @@ const ResetPassword = () => {
           NotificationManager.success(
             "You are active now. Please login with your username/email and password "
           );
+          setPassword("");
+          setRetypePassword("");
         }
       } catch (error) {
         if (error) {

@@ -1,41 +1,56 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { resetPasswordAction } from "../redux/actions/userActions";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState();
   const [retypePassword, setRetypePassword] = useState();
   const [code, setCode] = useState();
-  const dispatch = useDispatch();
   const params = useParams();
-  const [loading, error] = useSelector((state) => state.collections);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (password === retypePassword) {
-      dispatch(resetPasswordAction(password, code));
+      // dispatch(resetPasswordAction(password, code));
+      try {
+        const response = await axios.put(
+          `http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/activate/${code}`,
+          {
+            password: password,
+          }
+        );
+        console.log(response);
+        if (response.data) {
+          NotificationManager.success(
+            "You are active now. Please login with your username/email and password "
+          );
+        }
+      } catch (error) {
+        if (error) {
+          NotificationManager.error(error.message);
+        }
+      }
     }
   };
 
   useEffect(() => {
-    error && NotificationManager.error(error);
+    // error && NotificationManager.error(error);
     // console.log("params=>", params);
     params && setCode(params.code);
     // console.log(code);
-  }, [code, error, params]);
+  }, [code, params]);
 
-  return loading ? (
-    <div className="text-center">
-      <h1>Loading...</h1>
-    </div>
-  ) : (
+  // loading ? (
+  //   <div className="text-center">
+  //     <h1>Loading...</h1>
+  //   </div>
+  // ) :
+  return (
     <React.Fragment>
       <NotificationContainer />
       <div className="container">

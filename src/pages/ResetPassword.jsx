@@ -107,9 +107,9 @@ const ResetPassword = () => {
             <button type="submit" class="btn btn-primary">
               Create
             </button>
-            <Link to="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
+            <a href="http://ec2-3-92-174-48.compute-1.amazonaws.com:3000/">
               Click here to go to the login page.
-            </Link>
+            </a>
           </div>
         </form>
       </div>

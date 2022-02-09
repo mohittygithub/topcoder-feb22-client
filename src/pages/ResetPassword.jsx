@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   NotificationContainer,
@@ -24,11 +24,18 @@ const ResetPassword = () => {
       fetch(
         `http://44.202.120.131:8080/api/v1/users/activate/${code}`,
         requestOptions
-      ).then((response) =>
-        NotificationManager.success(
-          "You are active now. Please login with your username/email and password "
+      )
+        .then((response) => response.json())
+        .then(
+          NotificationManager.success(
+            "You are active now. Please login with your username/email and password "
+          )
         )
-      );
+        .then(
+          setTimeout(() => {
+            window.close();
+          }, 2000)
+        );
 
       // dispatch(resetPasswordAction(password, code));
       // try {
